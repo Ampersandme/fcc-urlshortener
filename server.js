@@ -1,5 +1,9 @@
 'use strict';
 
+require('dotenv').config()
+
+// original packages
+
 var express = require('express');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -13,6 +17,8 @@ var port = process.env.PORT || 3000;
 
 /** this project needs a db !! **/ 
 // mongoose.connect(process.env.MONGOLAB_URI);
+
+mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use(cors());
 
@@ -31,7 +37,13 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/shorturl/new", function (req, res) {
+  res.json({greeting: process.env.TESTTEST});
+});
 
-app.listen(port, function () {
-  console.log('Node.js listening ...');
+
+// listen for requests :)
+
+var listener = app.listen(port, function () {
+  console.log('Your app is listening on port ' + listener.address().port + ' http://localhost:' + listener.address().port);
 });
