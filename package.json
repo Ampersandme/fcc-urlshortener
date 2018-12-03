@@ -26,5 +26,8 @@
 		"hyperdev",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"prettier": "1.15.3"
+	}
 }
