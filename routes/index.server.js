@@ -1,12 +1,14 @@
 // my packages
 
-var urlExists = require("url-exists");
+//var urlExists = require("url-exists");
 
 
-module.exports = (app, db, ModelURL) => {
-app.get("/", function(req, res) {
-    res.sendFile(process.cwd() + "/views/index.html");
-  });
+module.exports = (app, db, ModelURL, urlExists) => {
+
+    // Main page render
+    app.get("/", function(req, res) {
+        res.sendFile(process.cwd() + "/views/index.html");
+    });
   
   // your first API endpoint...
   app.get("/api/hello", function(req, res) {
@@ -18,7 +20,12 @@ app.get("/", function(req, res) {
     console.log(req);
     res.json({ greeting: process.env.TESTTEST, url: "test" });
   });
-  
+
+  //Test 404 endpoint
+  app.get("/404", function(req, res) {
+    res.sendFile(process.cwd() + "/views/404.html");
+});
+
   //Shortening URL's or taking the raw URL
   
   app.post("/api/shorturl/new", async (req, res, next) => {

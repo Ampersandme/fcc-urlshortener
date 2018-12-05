@@ -12,7 +12,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 var dotenv = require("dotenv").config();
 var dns = require("dns");
-
+var urlExists = require("url-exists");
 var app = express();
 
 // Basic Configuration
@@ -71,7 +71,7 @@ app.use("/public", express.static(process.cwd() + "/public"));
 /*** ROUTES ***/
 
 const routes = require('./routes/index.server.js');
-routes(app, db, ModelURL);
+routes(app, db, ModelURL, urlExists);
 
 // listen for requests :)
 
